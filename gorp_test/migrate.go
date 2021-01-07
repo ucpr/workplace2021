@@ -5,11 +5,11 @@ import (
 	"log"
 
 	_ "github.com/lib/pq"
-	"gopkg.in/gorp.v1"
+	"gopkg.in/gorp.v2"
 )
 
 type Room struct {
-	Id      int64  `db:"room_id, primarykey, autoincrement"`
+	Id      int64  `db:"room_id"`
 	Title   string `db:"title"`
 	Message string `db:"message"`
 }
@@ -31,4 +31,5 @@ func main() {
 	if err != nil {
 		log.Fatalln("Create tables failed: %v", err)
 	}
+
 }

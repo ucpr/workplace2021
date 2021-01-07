@@ -6,7 +6,7 @@ import (
 	"log"
 
 	_ "github.com/lib/pq"
-	"gopkg.in/gorp.v1"
+	"gopkg.in/gorp.v2"
 )
 
 type Room struct {
@@ -28,8 +28,8 @@ func main() {
 	defer dbmap.Db.Close()
 	dbmap.AddTableWithName(Room{}, "rooms").SetKeys(true, "Id")
 
-	r := &Room{1, "title", "message"}
-	err = dbmap.Insert(r)
+	r := Room{1, "title", "message"}
+	err = dbmap.Insert(&r)
 	if err != nil {
 		log.Fatalln("Fail: %v", err)
 		return
