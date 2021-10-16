@@ -14,7 +14,7 @@ var (
 			Name: "http_requests_total",
 			Help: "How many HTTP requests processed, partitioned by status code and HTTP method.",
 		},
-		[]string{"code", "method"},
+		[]string{"method"},
 	)
 )
 
@@ -29,8 +29,8 @@ func main() {
 }
 
 func count(w http.ResponseWriter, r *http.Request) {
-	a := httpReqs.WithLabelValues("test", "1")
-	b := httpReqs.WithLabelValues("test", "2")
+	a := httpReqs.WithLabelValues("1")
+	b := httpReqs.WithLabelValues("2")
 	a.Inc()
 	b.Inc()
 }
